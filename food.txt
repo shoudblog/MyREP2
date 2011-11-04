@@ -1,0 +1,24 @@
+	SHLog(@"\n\n\n----------------------------------------------------------");
+	SHLog(@"Interface Orientation: %d", interfaceOrientation);
+    
+    UIViewController* vc = self.selectedViewController;
+    
+    if ( !vc || YES ) {
+        SHLog(@"TAB: No current controller selected");
+        return UIInterfaceOrientationIsLandscape(interfaceOrientation);
+    }
+
+    if ( [vc isKindOfClass:[UINavigationController class]] ) {
+        SHLog(@"TAB: selected controller is Navigation Controller");
+    	UINavigationController* nc = (UINavigationController*)vc;
+        vc = nc.topViewController;
+    }
+
+    BOOL result = [vc shouldAutorotateToInterfaceOrientation:interfaceOrientation];
+    SHLog(@"Result: %d", result);
+
+	SHLog(@"----------------------------------------------------------\n\n\n");
+    
+	return result;
+
+491x139
